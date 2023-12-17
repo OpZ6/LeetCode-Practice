@@ -1,3 +1,3 @@
 # leetcode-practices
 
-[] Arrays 101 23.12.16
+- Arrays101 23.12.16
