@@ -6,7 +6,7 @@
 //forgot to consider the all '1' cases, and misunderstood at first
 class Solution {
     public int findMaxConsecutiveOnes(int[] nums) {
-        int tmp_sum = 0, count = 0, sum = 0, index =0;
+        int tmp_sum = 0, count = 0, sum = 0, index =0; 
       
         while(index < nums.length){
             if(nums[index] == 0){
