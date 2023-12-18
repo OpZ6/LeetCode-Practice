@@ -2,7 +2,7 @@
 //Easy
 //https://leetcode.com/problems/roman-to-integer/description/
 
-class Solution {
+class Solution { 
     public int romanToInt(String s) {
         if (s == "") {
             throw new IllegalArgumentException("Input String is null");
