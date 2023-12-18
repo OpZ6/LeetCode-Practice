@@ -2,7 +2,7 @@
 //Easy
 //https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string
 
-class Solution {
+class Solution {nnn
     public int strStr(String haystack, String needle) {
         for(int i = 0; i < haystack.length() - needle.length() + 1; i++){
             for(int j = 0; j < needle.length(); j++){
