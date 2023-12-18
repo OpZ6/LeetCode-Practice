@@ -2,7 +2,7 @@
 //Easy
 //https://leetcode.com/problems/palindrome-linked-list/description
 
-class Solution {
+class Solution { 
     public boolean isPalindrome(ListNode head) {
         ListNode slow = head, fast = head, tmp = null, pre = null;
         while(fast != null && fast.next != null){
