@@ -15,7 +15,7 @@ class Solution {
         int addUp = 0;
         String res = "";
         for(int i = a.length() - 1; i >= 0; i--){
-            int num1 = a.charAt(i) - '0';
+            int num1 = a.charAt(i) - '0'; 
             int num2 = b.charAt(i) - '0';
             int sum = addUp + num1 + num2;
             res = ((sum % 2) + "") + res;
