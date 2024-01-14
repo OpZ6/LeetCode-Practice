@@ -1,4 +1,4 @@
-//557. Reverse Words in a String III
+//487. Max Consecutive Ones II
 //https://leetcode.com/problems/reverse-words-in-a-string-iii/description/
 
 class Solution {
