@@ -1,6 +1,8 @@
 //705. Design HashSet
 //https://leetcode.com/problems/design-hashset/
 
+//https://leetcode.com/explore/learn/card/hash-table/182/practical-applications/1142/
+
 //My approach
 class MyHashSet {
     private int Range;
