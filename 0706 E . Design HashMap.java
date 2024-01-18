@@ -1,6 +1,8 @@
 // 706. Design HashMap
 // https://leetcode.com/problems/design-hashmap/description/
 
+// https://leetcode.com/explore/learn/card/hash-table/182/practical-applications/1142/
+
 // My approach
 class MyHashMap {
     private int range;
