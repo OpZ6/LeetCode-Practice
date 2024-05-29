@@ -62,3 +62,37 @@ class Solution {
         return Arrays.copyOfRange(score, 0, k);
     }
 }
+
+//priorityqueue
+class Solution {
+    public int[] kWeakestRows(int[][] mat, int k) {
+        // 创建一个最小堆
+        Queue<int[]> pq = new PriorityQueue<>((a, b) -> {
+            // 如果士兵数量相同，则比较行索引
+            if (a[1] == b[1]) {
+                return a[0] - b[0];
+            }
+            // 否则比较士兵数量
+            return a[1] - b[1];
+        });//define the compare rules
+
+        // 遍历矩阵的每一行
+        for (int i = 0; i < mat.length; i++) {
+            // 计算每行的士兵数量
+            int count = 0;
+            for (int j = 0; j < mat[i].length; j++) {
+                count += mat[i][j];
+            }
+            // 将行索引和士兵数量添加到最小堆中
+            pq.offer(new int[]{i, count});
+        }
+
+        // 从最小堆中取出前k个最弱的行
+        int[] result = new int[k];
+        for (int i = 0; i < k; i++) {
+            result[i] = pq.poll()[0];
+        }
+
+        return result;
+    }
+}
