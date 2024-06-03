@@ -24,7 +24,6 @@ class Solution {
         if (root == null) {
             return res;
         }
-        
         res.add(root.val); // 访问根节点
         if (root.left != null) {
             res.addAll(preorderTraversal(root.left)); // 遍历左子树
@@ -32,10 +31,22 @@ class Solution {
         if (root.right != null) {
             res.addAll(preorderTraversal(root.right)); // 遍历右子树
         }
-
         return res;
     }
 }
+
+class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root != null) {
+            result.add(root.val);
+            result.addAll(preorderTraversal(root.left));
+            result.addAll(preorderTraversal(root.right));
+        }
+        return result;
+    }
+}
+
 
 //stack
 class Solution {
