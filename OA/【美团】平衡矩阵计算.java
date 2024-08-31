@@ -43,10 +43,8 @@ public class Main {
         // 计算前缀和
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
-                prefixZero[i][j] = prefixZero[i - 1][j] + prefixZero[i][j - 1] - prefixZero[i -
-                                   1][j - 1];
-                prefixOne[i][j] = prefixOne[i - 1][j] + prefixOne[i][j - 1] - prefixOne[i - 1][j
-                                  - 1];
+                prefixZero[i][j] = prefixZero[i - 1][j] + prefixZero[i][j - 1] - prefixZero[i -1][j - 1];
+                prefixOne[i][j] = prefixOne[i - 1][j] + prefixOne[i][j - 1] - prefixOne[i - 1][j- 1];
 
                 if (matrix[i - 1][j - 1] == '0') {
                     prefixZero[i][j]++;
@@ -61,10 +59,8 @@ public class Main {
             int count = 0;
             for (int i = size; i <= n; i++) {
                 for (int j = size; j <= n; j++) {
-                    int totalZeros = prefixZero[i][j] - prefixZero[i - size][j] - prefixZero[i][j -
-                                     size] + prefixZero[i - size][j - size];
-                    int totalOnes = prefixOne[i][j] - prefixOne[i - size][j] - prefixOne[i][j -
-                                    size] + prefixOne[i - size][j - size];
+                    int totalZeros = prefixZero[i][j] - prefixZero[i - size][j] - prefixZero[i][j -size] + prefixZero[i - size][j - size];
+                    int totalOnes = prefixOne[i][j] - prefixOne[i - size][j] - prefixOne[i][j -size] + prefixOne[i - size][j - size];
 
                     if (totalZeros == totalOnes) {
                         count++;
