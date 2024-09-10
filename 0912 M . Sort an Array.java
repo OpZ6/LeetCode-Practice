@@ -7,9 +7,9 @@
 // top-down merge sort
 // bottom-up merge sort
 // heap sort
-// selection sort
+// *selection sort
 // insertion sort
-// bubble sort (TLE)
+// *bubble sort
 
 //merge sort
 class Solution {
@@ -100,14 +100,62 @@ class Solution {
 //     return res;
 // }
 
+
 //20240910 Practice Again
+
+
 class Solution {
     public int[] sortArray(int[] nums) {
         bubbleSort(nums);
         return nums;
     }
 
-    private void bubbleSort(int[] nums) {
+    public void selectSort(int[] nums) {
+        for (int i = 0; i < nums.length - 1; i++) { // 只需到 n-1，因为最后一个元素自然已经有序
+            int min_pos = i;
+            for (int j = i + 1; j < nums.length; j++) { // 从 i+1 开始，因为已经以 i 为标准
+                if (nums[j] < nums[min_pos]) {
+                    min_pos = j;
+                }
+                //min_pos = nums[j] < nums[min_pos] ? j : min_pos;
+            }
+            // 只有在 min_pos 发生变化时才进行交换，避免不必要的交换
+            if (min_pos != i) {
+                swap(nums, i, min_pos);
+            }
+        }
+    }
+
+    //Recursion Verison OF selectSort
+    // public void selectSort(int[] nums) {
+    //     selectSortRecursive(nums, 0); // 从索引 0 开始排序整个数组
+    // }
+
+    // private void selectSortRecursive(int[] nums, int start) {
+    //     // 递归终止条件：如果开始位置已经是最后一个元素，则数组已经排序完毕
+    //     if (start >= nums.length - 1) {
+    //         return;
+    //     }
+
+    //     // 找到从 start 到末尾的最小值的索引
+    //     int min_pos = start;
+    //     for (int i = start + 1; i < nums.length; i++) {
+    //         if (nums[i] < nums[min_pos]) {
+    //             min_pos = i;
+    //         }
+    //     }
+
+    //     // 将最小元素放到当前 start 位置
+    //     if (min_pos != start) {
+    //         swap(nums, start, min_pos);
+    //     }
+
+    //     // 递归处理剩余的数组部分
+    //     selectSortRecursive(nums, start + 1);
+    // }
+
+    
+    public void bubbleSort(int[] nums) {
         for (int i = nums.length; i > 0; i--) {
             // pay attention! //i = nums.length --> 1 // j = 0 --> i - 1
             // better! // add flag to point swap
@@ -123,6 +171,7 @@ class Solution {
             }
         }
     }
+
 
     private void swap(int[] nums, int i, int j) {
         int tmp = nums[i];
