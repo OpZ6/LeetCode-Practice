@@ -100,3 +100,33 @@ class Solution {
 //     return res;
 // }
 
+//20240910 Practice Again
+class Solution {
+    public int[] sortArray(int[] nums) {
+        bubbleSort(nums);
+        return nums;
+    }
+
+    private void bubbleSort(int[] nums) {
+        for (int i = nums.length; i > 0; i--) {
+            // pay attention! //i = nums.length --> 1 // j = 0 --> i - 1
+            // better! // add flag to point swap
+            boolean flag = false;
+            for (int j = 0; j < i - 1; j++) {
+                if (nums[j] > nums[j + 1]) {
+                    swap(nums, j, j + 1);
+                    flag = true;
+                }
+            }
+            if (!flag) {
+                break;
+            }
+        }
+    }
+
+    private void swap(int[] nums, int i, int j) {
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
+    }
+}
