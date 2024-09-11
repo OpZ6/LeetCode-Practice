@@ -106,10 +106,20 @@ class Solution {
 
 class Solution {
     public int[] sortArray(int[] nums) {
-        bubbleSort(nums);
+        // bubbleSort(nums);
         return nums;
     }
 
+    public void insertSort(int[] nums) {
+        // 第一轮循环表示我们每次选择的是数组无序部分中的第一个元素 nums[i]
+        // [0, i - 1] 有序 [i, nums.length - 1] 无序
+        for (int i = 1; i < nums.length; i++) {
+            for (int j = i; j > 0 && nums[j] < nums[j - 1]; j--) {
+                swap(nums, j, j - 1);
+            }
+        }
+    }
+    
     public void selectSort(int[] nums) {
         for (int i = 0; i < nums.length - 1; i++) { // 只需到 n-1，因为最后一个元素自然已经有序
             int min_pos = i;
