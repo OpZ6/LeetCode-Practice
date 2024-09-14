@@ -125,10 +125,35 @@ class Solution {
         //     }
         // }
 
-        //shellSort(nums);
+        // shellSort(nums);
         // quickSort(nums, 0, nums.length - 1);
-        quickSortBetter(nums, 0, nums.length - 1);
+        // quickSortBetter(nums, 0, nums.length - 1);
+        heapSort(nums);
         return nums;
+    }
+
+    public void heapSort(int[] nums) {
+        int N = nums.length - 1;
+        for (int i = (N - 1) / 2; i >= 0; i--) {
+            sink(i, N, nums);
+        }
+        while (N > 0) {
+            swap(nums, 0, N);
+            N--;
+            sink(0, N, nums);
+        }
+    }
+
+    private void sink(int i, int N, int[] nums){
+        while (i * 2 <= N - 1) {
+            int j = i * 2 + 1;
+            j = ((j + 1 <= N) && (nums[j] < nums[j + 1])) ? j + 1 : j;
+            if (nums[i] > nums[j]){
+                break;
+            }
+            swap(nums, i, j);
+            i = j;
+        }
     }
 
     private Random random = new Random();
@@ -210,7 +235,8 @@ class Solution {
         int mid = l + (r - l) / 2;
         mergeSort(nums, l, mid);
         mergeSort(nums, mid + 1, r);
-        if (nums[mid] > nums[mid + 1]) {
+        if (nums[mid] > nums[mid + 1]) {//存在最小最大值差距再排序
+
             merge(nums, l, mid, r);
         }
     }
