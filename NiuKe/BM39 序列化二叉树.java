@@ -129,3 +129,92 @@ public class Solution {
         return root;
     }
 }
+
+//两种排序方法重构
+import java.util.*;
+
+/*
+public class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+
+    public TreeNode(int val) {
+        this.val = val;
+    }
+}
+*/
+public class Solution {
+    // Serialize a binary tree to a string using level-order traversal
+    String Serialize(TreeNode root) {
+        if (root == null) return "#"; // Represent an empty tree
+
+        StringBuilder sb = new StringBuilder();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+
+            if (node == null) {
+                sb.append("#,");
+            } else {
+                sb.append(node.val).append(",");
+                queue.offer(node.left);
+                queue.offer(node.right);
+            }
+        }
+
+        // Remove trailing commas and null markers
+        int i = sb.length() - 1;
+        while (i >= 0 && (sb.charAt(i) == ',' || sb.charAt(i) == '#')) {
+            i--;
+        }
+        sb.setLength(i + 1);
+
+        return sb.toString();
+    }
+
+    // Deserialize a string back to a binary tree using level-order traversal
+    TreeNode Deserialize(String str) {
+        if (str == null || str.length() == 0 || str.equals("#")) return null;
+
+        String[] vals = str.split(",");
+        Queue<TreeNode> queue = new LinkedList<>();
+        int index = 0;
+
+        // Create the root node
+        TreeNode root = new TreeNode(Integer.parseInt(vals[index++]));
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+
+            // Left child
+            if (index < vals.length) {
+                String leftVal = vals[index++];
+                if (!leftVal.equals("#")) {
+                    TreeNode leftNode = new TreeNode(Integer.parseInt(leftVal));
+                    node.left = leftNode;
+                    queue.offer(leftNode);
+                } else {
+                    node.left = null;
+                }
+            }
+
+            // Right child
+            if (index < vals.length) {
+                String rightVal = vals[index++];
+                if (!rightVal.equals("#")) {
+                    TreeNode rightNode = new TreeNode(Integer.parseInt(rightVal));
+                    node.right = rightNode;
+                    queue.offer(rightNode);
+                } else {
+                    node.right = null;
+                }
+            }
+        }
+
+        return root;
+    }
+}
