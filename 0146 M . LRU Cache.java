@@ -1,6 +1,81 @@
 //146. LRU Cache
 //https://leetcode.com/problems/lru-cache/description/
 
+//my code
+class LRUCache {
+
+    private static class Node {
+        int key, value;
+        Node prev, next;
+
+        Node(int k, int v) {
+            key = k;
+            value = v;
+        }
+    }
+
+    private final int capacity;
+    private final Node dummy = new Node(0, 0); // 哨兵节点
+    private final Map<Integer, Node> keyToNode = new HashMap<>();
+
+    public LRUCache(int capacity) {
+        this.capacity = capacity;
+        dummy.prev = dummy;
+        dummy.next = dummy;
+    }
+
+    public int get(int key) {
+        Node node = keyToNode.get(key);
+        if (node == null) {
+            return -1; // 节点不存在，返回 -1
+        }
+        // 如果节点存在，先删除再移到头部
+        delete(node);
+        addToHead(node);
+        return node.value;
+    }
+
+    public void put(int key, int value) {
+        // 如果有这本书，取出来替换value放最上面
+        if (keyToNode.containsKey(key)) {
+            Node node = keyToNode.get(key);
+            node.value = value;
+            delete(node);
+            addToHead(node);
+        } else { //如果没这本书，直接放最上面
+            Node node = new Node(key, value);
+            addToHead(node);
+            keyToNode.put(key, node);
+            //检查capacity
+            if (keyToNode.size() > capacity) {
+                keyToNode.remove(dummy.prev.key);
+                delete(dummy.prev);
+            }
+        }
+    }
+
+    private void addToHead(Node target) {
+        target.next = dummy.next;
+        dummy.next.prev = target;
+        target.prev = dummy;
+        dummy.next = target;
+    }
+
+    private void delete(Node target) {
+        target.prev.next = target.next;
+        target.next.prev = target.prev;
+    }
+}
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
+
+//answer
+
 class LRUCache {
     Map<Integer, Node> check = new HashMap();
     int capacity;
